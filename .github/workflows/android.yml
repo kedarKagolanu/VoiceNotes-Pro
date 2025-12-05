@@ -31,9 +31,11 @@ jobs:
       run: |
         cp .env.phase1 .env
         
-    - name: Install dependencies
+    - name: Clear npm cache and install dependencies
       run: |
-        npm ci --legacy-peer-deps
+        npm cache clean --force
+        rm -rf node_modules package-lock.json
+        npm install --legacy-peer-deps
         
     - name: Fix gradlew permissions
       run: |
