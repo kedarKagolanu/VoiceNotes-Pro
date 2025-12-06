@@ -31,11 +31,12 @@ jobs:
       run: |
         cp .env.phase1 .env
         
-    - name: Clear npm cache and install dependencies
+    - name: Update package-lock and install dependencies
       run: |
         npm cache clean --force
         rm -rf node_modules package-lock.json
         npm install --legacy-peer-deps
+        npm ls react-native-sqlite-storage || true
         
     - name: Fix gradlew permissions
       run: |
