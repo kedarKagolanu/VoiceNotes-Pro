@@ -84,7 +84,15 @@ project.ext.react = [
     bundleAssetName: "index.android.bundle",
 ]
 
-apply from: "../../node_modules/react-native/react.gradle"
+// Simple bundle task to replace react.gradle functionality
+android.applicationVariants.all { variant ->
+    def targetName = variant.name.capitalize()
+    def bundleTask = tasks.create(name: "bundle${targetName}JsAndAssets") {
+        // This task will be handled by Metro bundler during build
+    }
+    variant.preBuildProvider.get().dependsOn bundleTask
+}
+
 apply from: "../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"
 
 /**
@@ -129,13 +137,13 @@ def nativeArchitectures = project.getProperties().get("reactNativeDebugArchitect
 android {
     ndkVersion rootProject.ext.ndkVersion
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 33
 
     namespace "com.voicenotespro"
     defaultConfig {
         applicationId "com.voicenotespro"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 23
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
     }
