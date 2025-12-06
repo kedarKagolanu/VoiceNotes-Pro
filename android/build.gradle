@@ -25,5 +25,13 @@ allprojects {
         mavenCentral()
         maven { url "https://www.jitpack.io" }
         maven { url "https://repo1.maven.org/maven2/" }
+        // Add npm registry for React Native
+        maven {
+            url("$rootDir/../node_modules/react-native/android")
+        }
+        // Fallback for React Native
+        maven { 
+            url "https://oss.sonatype.org/content/repositories/snapshots/" 
+        }
     }
 }

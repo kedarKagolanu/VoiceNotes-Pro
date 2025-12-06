@@ -89,7 +89,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation "com.facebook.react:react-native:0.72.6"  // Exact version
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     
     debugImplementation("com.facebook.flipper:flipper:0.125.0") {
