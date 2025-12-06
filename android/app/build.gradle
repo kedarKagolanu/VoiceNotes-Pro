@@ -92,6 +92,9 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     
+    // SQLite Storage
+    implementation project(':react-native-sqlite-storage')
+    
     debugImplementation("com.facebook.flipper:flipper:0.125.0") {
         exclude group:'com.facebook.fbjni'
     }
