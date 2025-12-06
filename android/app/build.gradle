@@ -29,10 +29,6 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
 
-/**
- * Whether to enable the Hermes VM.
- */
-def enableHermes = project.ext.react.get("enableHermes", false)
 
 android {
     compileSdkVersion 33
@@ -94,8 +90,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    //noinspection GradleDynamicVersion
-    implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     
     debugImplementation("com.facebook.flipper:flipper:0.125.0") {
@@ -108,14 +102,7 @@ dependencies {
         exclude group:'com.facebook.fbjni'
     }
 
-    if (enableHermes) {
-        //noinspection GradleDynamicVersion
-        implementation("com.facebook.react:hermes-engine:+") { // From node_modules
-            exclude group:'com.facebook.fbjni'
-        }
-    } else {
-        implementation jscFlavor
-    }
+    implementation jscFlavor
 }
 
 // Run this once to be able to run the application with BUCK
