@@ -1,5 +1,4 @@
 apply plugin: "com.android.application"
-apply plugin: "com.facebook.react"
 apply plugin: "org.jetbrains.kotlin.android"
 
 import com.android.build.OutputFile
@@ -81,8 +80,11 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     enableHermes: false,  // Keep disabled for compatibility
+    entryFile: "index.js",
+    bundleAssetName: "index.android.bundle",
 ]
 
+apply from: "../../node_modules/react-native/react.gradle"
 apply from: "../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"
 
 /**
