@@ -19,6 +19,16 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://www.jitpack.io' }
+        maven {
+            // Local Maven repo where React Native publishes Android artifacts
+            url("$rootDir/../node_modules/react-native/android")
+            content {
+                includeGroup("com.facebook.react")
+            }
+        }
+        flatDir {
+            dirs("$rootDir/../node_modules/react-native/android/com/facebook/react/react-native/0.72.6/")
+        }
     }
 }
 
