@@ -1,21 +1,12 @@
-import SQLite, {SQLiteDatabase} from 'react-native-sqlite-storage';
+import SQLite from 'react-native-sqlite-2';
 import {Note, Folder} from '@/types';
 
-// Enable debugging (disable in production)
-SQLite.DEBUG(true);
-SQLite.enablePromise(true);
-
-let database: SQLiteDatabase | null = null;
+let database: any = null;
 
 export const initializeDatabase = async (): Promise<void> => {
   try {
-    database = await SQLite.openDatabase(
-      {
-        name: 'voicenotes.db',
-        location: 'default',
-      }
-    );
-
+    database = SQLite.openDatabase('voicenotes.db', '1.0', 'VoiceNotes Pro Database', 200000);
+    
     await createTables();
     console.log('Database initialized successfully');
   } catch (error) {
